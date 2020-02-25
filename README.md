@@ -3,15 +3,20 @@ test site - docker multicontainer / microservices.
 
 uses: 
 - docker container for each service
-- react - frontend
-- express.js - API layer
-- redis - var Store
-- worker - app layer
-- postgres - data store.
+- nginx - webserver
+- react - web frontend
+- express.js - API server
+- redis - dict store
+- postgres - permanent data store
+- worker - application logic
+
 
 topology:
-user ---> react --> express.js --> redis <--> worker
+nginx   ---> react 
+        ---> express.js 
+                <--> postgres
+                --> redis <--> worker
                         |
-                        | <--> postgres
+                        
 
 
