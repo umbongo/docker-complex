@@ -16,7 +16,6 @@ nginx   ---> react
         ---> express.js 
                 <--> postgres
                 --> redis <--> worker
-                        |
                         
 
 
