@@ -6,10 +6,10 @@ services:
             - client
         restart: always
         build:
-            dockerfile: Dockerfile
+            dockerfile: Dockerfile.dev
             context: ./nginx
         ports:
-            - '80:80'
+            - '3050:80'
     postgres:
         image: 'postgres:latest'
         environment:
@@ -21,7 +21,7 @@ services:
             - postgres
             - redis
         build:
-            dockerfile: Dockerfile
+            dockerfile: Dockerfile.dev
             context: ./server
         volumes:
             - /app/node_modules
@@ -36,7 +36,7 @@ services:
             - PGPORT=5432
     client:
         build:
-            dockerfile: Dockerfile
+            dockerfile: Dockerfile.dev
             context: ./client
         volumes:
             - /app/node_modules
@@ -45,7 +45,7 @@ services:
         depends_on: 
             - redis
         build:
-            dockerfile: Dockerfile
+            dockerfile: Dockerfile.dev
             context: ./worker
         volumes:
             - /app/node_modules
@@ -53,3 +53,5 @@ services:
         environment:
             - REDIS_HOST=redis
             - REDIS_PORT=6379
+
+        

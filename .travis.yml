@@ -1,0 +1,21 @@
+sudo: required
+services:
+    - docker
+
+before_install:
+    - docker build -t umbongo/docker-complex ./client/Dockerfile.dev ./client
+
+script:
+    - docker run -e CI=true umbongo/docker-complex npm test
+
+after_success:
+    - docker build -t umbongo/multi-client ./client
+    - docker build -t umbongo/multi-nginx ./nginx
+    - docker build -t umbongo/multi-server ./server
+    - docker build -t umbongo/multi-worker ./worker
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    - docker push umbongo/multi-client
+    - docker push umbongo/multi-nginx
+    - docker push umbongo/multi-server
+    - docker push umbongo/multi-worker
+
