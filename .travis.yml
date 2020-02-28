@@ -9,10 +9,10 @@ script:
     - docker run -e CI=true umbongo/docker-complex npm test
 
 after_success:
-    - docker build -t umbongo/multi-client ./client
-    - docker build -t umbongo/multi-nginx ./nginx
-    - docker build -t umbongo/multi-server ./server
-    - docker build -t umbongo/multi-worker ./worker
+    - docker build -t tomconga/multi-client ./client
+    - docker build -t tomconga/multi-nginx ./nginx
+    - docker build -t tomconga/multi-server ./server
+    - docker build -t tomconga/multi-worker ./worker
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
     - docker push tomconga/multi-client
     - docker push tomconga/multi-nginx
