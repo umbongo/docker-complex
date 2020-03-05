@@ -14,10 +14,10 @@ after_success:
     - docker build -t tomconga/multi-server ./server
     - docker build -t tomconga/multi-worker ./worker
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-    - docker push tomconga/multi-client
-    - docker push tomconga/multi-nginx
-    - docker push tomconga/multi-server
-    - docker push tomconga/multi-worker
+    - docker push tomconga/multi-client:1.1
+    - docker push tomconga/multi-nginx:1.1
+    - docker push tomconga/multi-server:1.1
+    - docker push tomconga/multi-worker:1.1
 
 # deploy:
 #     provider: elasticbeanstalk
